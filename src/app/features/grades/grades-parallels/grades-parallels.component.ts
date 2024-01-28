@@ -1,8 +1,11 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {MatListModule} from "@angular/material/list";
-import {AbstractControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
-import {GradesService} from "../grades.service";
+import {GradesService} from "../../../shared/grades.service";
+import {ParallelsService} from "../../../shared/parallels.service";
+import {MatButtonModule} from "@angular/material/button";
+import {MatStepperModule} from "@angular/material/stepper";
 
 @Component({
   selector: 'app-grades-parallels',
@@ -12,24 +15,43 @@ import {GradesService} from "../grades.service";
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatButtonModule,
+    MatStepperModule,
   ],
   templateUrl: './grades-parallels.component.html',
-  styleUrl: './grades-parallels.component.scss'
+  styleUrl: './grades-grades-parallels.component.scss'
 })
 export class GradesParallelsComponent {
-  parallels: string[] = [];
-
+  parallels: Parallel[] = [];
   grades: Grade[] = [];
+  formGroup!: FormGroup<GradesFormControls>;
 
-  @Input({ required: true })
-  formGroup!: FormGroup<Grade>;
+  isFormGroupValid() {
+    return this.formGroup.valid && !this.formGroup.pending && !this.formGroup.disabled;
+  }
 
-  constructor(private gradesService: GradesService) {
-    this.parallels = this.gradesService.parallels;
-    this.grades = this.gradesService.grades;
+  @Output()
+  onSubmit = new EventEmitter<Record<Grade, Parallel>>();
+
+  constructor(private gradesService: GradesService, private parallelsService: ParallelsService) {
+    this.parallels = this.parallelsService.getParallels();
+    this.grades = this.gradesService.getDefaultGrades();
   }
 
   ngOnInit() {
-    console.log(this.formGroup);
+    this.formGroup =  new FormGroup<GradesFormControls>(this.grades.reduce(
+        (acc, grade) => ({
+          ...acc,
+          [grade]: new FormControl<Parallel | null>(null, Validators.required),
+        }),
+        {}
+      ) as GradesFormControls);
+  }
+
+  save() {
+    if (this.isFormGroupValid()) {
+      const grades = this.parallelsService.convertParallelsToGrades(this.formGroup.value as Record<Grade, Parallel>);
+      this.gradesService.grades.next(grades);
+    }
   }
 }

@@ -11,7 +11,7 @@ describe('GradesParallelsComponent', () => {
       imports: [GradesParallelsComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(GradesParallelsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
