@@ -1,0 +1,17 @@
+@if (teachersList.length === 0) {
+  Спочатку додайте вчителів
+} @else {
+  <mat-form-field>
+    <mat-label>Виберіть вчителя</mat-label>
+    <mat-select [ngModel]="selectedTeacherId | async"
+                (ngModelChange)="onSelectedTeacherChange($event)"
+    >
+      @for (teacher of teachersList; track teacher.id) {
+        <mat-option [value]="teacher.id">{{ teacher.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  @if (selectedTeacherId.value) {
+    <app-teacher-blocked-time [teacherId]="selectedTeacherId"></app-teacher-blocked-time>
+  }
+}

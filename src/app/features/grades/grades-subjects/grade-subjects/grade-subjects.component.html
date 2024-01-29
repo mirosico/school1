@@ -1,0 +1,28 @@
+<mat-grid-list cols="4" rowHeight="10:1">
+  <mat-grid-tile>
+    Вибрано
+  </mat-grid-tile>
+  <mat-grid-tile>
+    Назва предмету
+  </mat-grid-tile>
+  <mat-grid-tile>
+    К-ть груп
+  </mat-grid-tile>
+  <mat-grid-tile>
+    К-ть годин
+  </mat-grid-tile>
+  @for(row of tableData.value; track row.id) {
+    <mat-grid-tile>
+      <mat-checkbox [ngModel]="row.checked" (ngModelChange)="onInputChange('checked', $event, row.id)"></mat-checkbox>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      {{row.label}}
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <input name="groupNumber" matInput  type="number" [ngModel]="row.groupNumber" (ngModelChange)="onInputChange('groupNumber', $event, row.id)" min="1" max="10">
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <input name="hours" matInput  type="number" [ngModel]="row.hours" (ngModelChange)="onInputChange('hours', $event, row.id)" step="0.5" min="0.5" max="100">
+      </mat-grid-tile>
+  }
+</mat-grid-list>

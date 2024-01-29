@@ -1,0 +1,16 @@
+<mat-grid-list cols="5" rowHeight="10:1">
+  @for(day of days; track day) {
+  <mat-grid-tile>
+    {{ getDayName(day) }}
+  </mat-grid-tile>
+  }
+  @if (!!blockedTimeMatrix.length) {
+      @for (lesson of lessons; track lesson) {
+        @for(day of days; track day) {
+          <mat-grid-tile>
+          <mat-checkbox [checked]="blockedTimeMatrix[day][lesson]" (change)="onCheckboxChange($event.checked, day, lesson)">{{lesson}}-й урок</mat-checkbox>
+        </mat-grid-tile>
+      }
+    }
+  }
+</mat-grid-list>
