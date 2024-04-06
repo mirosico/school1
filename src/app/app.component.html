@@ -1,2 +1,9 @@
-<app-teachers-list></app-teachers-list>
-<router-outlet></router-outlet>
+<app-topbar/>
+@if (isLoading) {
+  <mat-spinner></mat-spinner>
+} @else {
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+}
+<app-footer/>

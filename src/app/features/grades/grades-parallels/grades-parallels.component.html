@@ -1,21 +1,29 @@
-<form [formGroup]="formGroup">
-  <mat-list>
-    @for (grade of grades; track grade) {
-      <mat-list-item>
-        <mat-form-field>
-          <label matFormFieldFloatingLabel>{{grade}} клас: </label>
-          <mat-select [formControlName]="grade" required>
-            <mat-option>--</mat-option>
-            @for (parallel of parallels; track parallel) {
-              <mat-option [value]="parallel">{{parallel}}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      </mat-list-item>
+<div class="container">
+  <h2>Виберіть паралелі для класів</h2>
+  <mat-slider discrete max="11" min="1" showTickMarks step="1">
+    <input (change)="onMinGradeChange($event)" [value]="gradeRangeSubject.value[0]" matSliderStartThumb>
+    <input (change)="onMaxGradeChange($event)" [value]="gradeRangeSubject.value[1]" matSliderEndThumb>
+  </mat-slider>
+  <form [formGroup]="formGroup">
+    <mat-list>
+      @for (grade of grades; track grade) {
+        <mat-list-item>
+          <mat-form-field>
+            <label matFormFieldFloatingLabel>{{grade}} клас: </label>
+            <mat-select [formControlName]="grade" required>
+              <mat-option>--</mat-option>
+              @for (parallel of parallels; track parallel) {
+                <mat-option [value]="parallel">{{parallel}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </mat-list-item>
+      }
+    </mat-list>
+    @if (formGroup.invalid && formGroup.touched && formGroup.dirty) {
+      <mat-error>Заповніть всі класи</mat-error>
     }
-  </mat-list>
-  @if (formGroup.invalid && formGroup.touched && formGroup.dirty) {
-    <mat-error>Заповніть всі класи</mat-error>
-  }
-  <button mat-raised-button color="primary" (click)="save()">Зберегти</button>
-</form>
+    <button (click)="save()" class="save" color="primary" mat-raised-button>Зберегти</button>
+  </form>
+</div>
+

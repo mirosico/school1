@@ -1,6 +1,10 @@
-<mat-form-field>
-  <textarea matInput [formControl]="teachersNames"
+<div class="container">
+  <h2>Введіть ПІБ викладачів</h2>
+  <form>
+    <mat-form-field class="textarea">
+  <textarea [formControl]="teachersNames" appTeachersList matInput
             placeholder="Введіть ПІБ викладачів(кожного з нового рядка)"></textarea>
-</mat-form-field>
-<button mat-raised-button color="primary" type="submit" (click)="save()">Зберегти</button>
-
+    </mat-form-field>
+    <button (click)="save()" class="save" color="primary" mat-raised-button matStepperNext type="submit">Зберегти</button>
+  </form>
+</div>

@@ -1,17 +1,21 @@
-@if (grades.length === 0) {
-  Спочатку додайте класи
-} @else {
-  <mat-form-field>
-    <mat-label>Виберіть клас</mat-label>
-    <mat-select [ngModel]="selectedGradeKey | async"
-                (selectionChange)="selectedGradeKey.next($event.value)"
-    >
-      @for (gradeKey of grades; track gradeKey) {
-        <mat-option [value]="gradeKey">{{ gradeKey }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-  @if (selectedGradeKey.value) {
-    <app-grade-subjects [gradeKey]="selectedGradeKey"></app-grade-subjects>
+<div class="container">
+  @if (grades.length === 0) {
+    Спочатку додайте класи
+  } @else {
+      <h2>Виберіть предмети, к-ть груп і тижневе навантаження для кожного класу</h2>
+    <mat-form-field class="selector">
+      <mat-label>Виберіть клас</mat-label>
+      <mat-select [ngModel]="selectedGradeKey | async"
+                  (selectionChange)="selectedGradeKey.next($event.value)"
+      >
+        @for (gradeKey of grades; track gradeKey) {
+          <mat-option [value]="gradeKey">{{ gradeKey }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    @if (selectedGradeKey.value) {
+      <app-grade-subjects [gradeKey]="selectedGradeKey"></app-grade-subjects>
+    }
   }
-}
+</div>

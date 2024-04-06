@@ -21,6 +21,11 @@
       ],
       "rules": {
         // ESLint rules
+        "no-restricted-syntax": "off",
+        "no-continue": "off",
+        "no-plusplus": "off",
+        "consistent-return": "off",
+        "class-methods-use-this": "off",
         "import/prefer-default-export": "off",
         "import/first": "error",
         "import/newline-after-import": "error",

@@ -1,17 +1,22 @@
-@if (teachersList.length === 0) {
-  Спочатку додайте вчителів
-} @else {
-  <mat-form-field>
-    <mat-label>Виберіть вчителя</mat-label>
-    <mat-select [ngModel]="selectedTeacherId | async"
-                (ngModelChange)="onSelectedTeacherChange($event)"
-    >
-      @for (teacher of teachersList; track teacher.id) {
-        <mat-option [value]="teacher.id">{{ teacher.name }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-  @if (selectedTeacherId.value) {
-    <app-teacher-blocked-time [teacherId]="selectedTeacherId"></app-teacher-blocked-time>
+<div class="container">
+  <h2>Виберіть час, коли викладач НЕ зможе вести уроки</h2>
+
+  @if (teachersList.length === 0) {
+    Спочатку додайте вчителів
+  } @else {
+    <mat-form-field class="selector">
+      <mat-label>Виберіть вчителя</mat-label>
+      <mat-select [ngModel]="selectedTeacherId | async"
+                  (ngModelChange)="onSelectedTeacherChange($event)"
+      >
+        @for (teacher of teachersList; track teacher.id) {
+          <mat-option [value]="teacher.id">{{ teacher.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    @if (selectedTeacherId.value) {
+      <app-teacher-blocked-time [teacherId]="selectedTeacherId"></app-teacher-blocked-time>
+    }
   }
-}
+  <button (click)="save()" class="save" color="primary" mat-raised-button type="submit">Перейти до вибору предметів</button>
+</div>

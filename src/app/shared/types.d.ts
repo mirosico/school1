@@ -1,35 +1,47 @@
+declare type GradeNumber = "5" | "6" | "7" | "8" | "9" | "10" | "11";
+declare type Parallel = "А" | "Б" | "В" | "Г" | "Д" | "Е" | "Ж";
+declare type Grade = `${GradeNumber}${Parallel}` | `${GradeNumber}`;
+type Slot = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+type Day = 0 | 1 | 2 | 3 | 4;
 
-declare type DefaultGrade = '5' | '6' | '7' | '8' | '9' | '10' | '11';
-
-declare type Parallel = 'А'| 'Б'| 'В'| 'Г'| 'Д'| 'Е'| 'Ж' | 'Без паралелі';
-
-declare type Grade = `${DefaultGrade}${Parallel}` | `${DefaultGrade}`;
-
-declare interface Subject {
-  id: string;
-  label: string;
-  groupNumber?: number;
-  hours?: number;
-  teachers?: Teacher[];
+interface Time {
+    day: Day;
+    slot: Slot;
 }
-
-declare type GradesFormControls = {
-  [key in Grade]: FormControl<Parallel | null>;
-};
-
 
 declare interface Teacher {
-  id: string;
-  name: string;
-  subjectIds?: Subject['id'][];
-  blockedTime?: LessonTime[],
+    id: string;
+    name: string;
+    subjectKeys?: Subject["key"][];
+    notAvailable?: Time[];
 }
 
-declare type Day = 0 |1 | 2 | 3 | 4;
+declare interface Lesson {
+    id: string;
+    time: Time;
+    group: SubjectGroup;
+    teacher: Teacher;
+}
 
-declare type Lesson = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+declare interface SubjectGroup {
+    id: string;
+    group: number;
+    subject: Subject;
+    teacher: Teacher;
+}
 
-declare interface LessonTime {
-  day: Day;
-  time: Lesson;
+declare interface Subject {
+    id: string;
+    key: string;
+    label: string;
+    difficulty: number;
+    grade: Grade;
+    hours: number;
+    groupNumber: number;
+    forbiddenSameDaySubjectKeys?: Subject["key"][];
+}
+
+declare interface User {
+    login: string;
+    password: string;
 }
