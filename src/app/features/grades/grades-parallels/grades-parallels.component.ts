@@ -33,7 +33,8 @@ type GradesFormControls = {
 })
 export class GradesParallelsComponent {
     parallels = this.parallelsService.parallels;
-    grades: GradeNumber[] = [];
+    gradeNumbers: GradeNumber[] = [];
+    grades: Grade[] = [];
     formGroup!: FormGroup<GradesFormControls>;
     gradeRangeSubject = new BehaviorSubject<[number, number]>([5, 11]);
 
@@ -60,14 +61,23 @@ export class GradesParallelsComponent {
     }
 
     ngOnInit() {
+        this.gradesService.grades$.subscribe((g) => {
+            const grades = g.length ? g : this.gradesService.gradeNumbers;
+            const gradeNumbers = Array.from(new Set(grades
+                .map((grade) => parseInt(grade, 10))));
+            this.gradeNumbers = gradeNumbers.map((grade) => grade.toString() as GradeNumber);
+            this.grades = grades;
+            this.gradeRangeSubject.next([Math.min(...gradeNumbers), Math.max(...gradeNumbers)]);
+            this.createFormGroup();
+        });
         this.gradeRangeSubject.subscribe(([min, max]) => {
-            this.grades = Array.from({ length: max - min + 1 }, (_, i) => i + min) as unknown as GradeNumber[];
+            this.gradeNumbers = Array.from({ length: max - min + 1 }, (_, i) => i + min) as unknown as GradeNumber[];
             this.createFormGroup();
         });
     }
 
     createFormGroup() {
-        this.formGroup = new FormGroup<GradesFormControls>(this.grades.reduce(
+        this.formGroup = new FormGroup<GradesFormControls>(this.gradeNumbers.reduce(
             (acc, grade) => ({
                 ...acc,
                 [grade]: new FormControl<Parallel | null>(null, Validators.required),

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { GradesService } from "../grades/grades.service";
 import { GroupsService } from "../groups/groups.service";
+import { LessonAvailabilityCheckerService } from "../lesson-availability-checker/lesson-availability-checker.service";
 import { LessonsService } from "../lessons/lessons.service";
 import { SubjectsService } from "../subjects/subjects.service";
 import { ScheduleMatrixService } from "./schedule-matrix.service";
@@ -17,7 +18,8 @@ export class ScheduleService {
         private gradesService: GradesService,
         private scheduleMatrixService: ScheduleMatrixService,
         private groupsService: GroupsService,
-        private lessonsService: LessonsService
+        private lessonsService: LessonsService,
+        private lessonAvailabilityCheckerService: LessonAvailabilityCheckerService
     ) {
     }
 
@@ -55,7 +57,9 @@ export class ScheduleService {
 
     canSwapLessons(grade: Grade, src: Time, dest: Time) {
         const srcLessons = this.lessonsService.findLessonsByGradeAndTime(grade, src);
-        const srcGroups = srcLessons.map((l) => l.group);
+        const gradeGroups = this.groupsService.findGradeGroups(grade);
+        const srcGroupIds = srcLessons.map((l) => l.group.id);
+        const srcGroups = gradeGroups.filter((g) => srcGroupIds.includes(g.id));
         const srcSubject = srcGroups[0].subject;
         if (!srcSubject) {
             return {
@@ -70,14 +74,16 @@ export class ScheduleService {
             };
         }
         const destLessons = this.lessonsService.findLessonsByGradeAndTime(grade, dest);
-        const destGroups = destLessons.map((l) => l.group);
+        const destGroupIds = destLessons.map((l) => l.group.id);
+        const destGroups = gradeGroups.filter((g) => destGroupIds.includes(g.id));
         const destSubject = destGroups.length ? destGroups[0].subject : null;
 
         const doesDestExist = !!destSubject;
-        const srcAvailability = this.checkLessonAvailability(srcSubject, dest, true);
-        const destAvailability = doesDestExist ? this.checkLessonAvailability(destSubject, src, true) : {
-            available: true
-        };
+        const srcAvailability = this.lessonAvailabilityCheckerService.checkAvailability(srcSubject, dest, true);
+        const destAvailability = doesDestExist
+            ? this.lessonAvailabilityCheckerService.checkAvailability(destSubject, src, true) : {
+                available: true
+            };
         return {
             src: srcAvailability,
             dest: destAvailability
@@ -124,7 +130,7 @@ export class ScheduleService {
         }
     }
 
-    private getDaysByPriority(subject: Subject, lessonSlot: Slot) {
+    private getDaysByPriority(subject: Subject) {
         const subjectGroups = this.groupsService.findGroups(subject.id);
         const teachers = subjectGroups.map((group) => group.teacher);
         const scheduleForTeachers = teachers.map((teacher) => this.getScheduleForTeacher(teacher.id));
@@ -151,20 +157,6 @@ export class ScheduleService {
         return daysByPriority;
     }
 
-    private isTeacherAvailableForLessonTime(subject: Subject, time: Time) {
-        const subjectGroups = this.groupsService.findGroups(subject.id);
-        return subjectGroups.some((group) => {
-            const { teacher } = group;
-            const isTeacherBusy = this.lessonsService.lessons
-                .some((lesson) => lesson.teacher.id === teacher.id && lesson.time.day === time.day
-                  && lesson.time.slot === time.slot);
-            const isTeacherBlocked = teacher?.notAvailable
-                ?.some((blockedLessonTime) => blockedLessonTime.day === time.day
-          && blockedLessonTime.slot === time.slot);
-            return !isTeacherBusy && !isTeacherBlocked;
-        });
-    }
-
     private isDayAvailable({ grade }: Subject, day: Day) {
         const totalHours = this.subjectsService.getSubjects({ grade })
             .reduce((acc, s) => acc + (s?.hours ?? 0), 0);
@@ -177,54 +169,17 @@ export class ScheduleService {
         const slots = checkExtraSlots ? this.scheduleMatrixService.extraSlots
             : this.scheduleMatrixService.slotsByPriority;
         for (const slot of slots) {
-            const daysByPriority = this.getDaysByPriority(subject, slot);
+            const daysByPriority = this.getDaysByPriority(subject);
             for (const day of daysByPriority) {
-                if (this.isDayAvailable(subject, day)
-                  && this.checkLessonAvailability(subject, { day, slot }, checkExtraSlots).available) {
-                    return { day, slot };
+                if (this.isDayAvailable(subject, day)) {
+                    const lessonAvailability = this.lessonAvailabilityCheckerService
+                        .checkAvailability(subject, { day, slot }, checkExtraSlots);
+                    if (lessonAvailability.available) {
+                        return { day, slot };
+                    }
                 }
             }
         }
         return null;
-    }
-
-    private checkLessonAvailability(subject: Subject, time: Time, allowPairedLessons?: boolean): {
-        available: boolean;
-        reason?: string;
-    } {
-        const { day, slot } = time;
-        const { grade, forbiddenSameDaySubjectKeys, key } = subject;
-        if (this.scheduleMatrixService.isSlotOccupied(day, slot)) {
-            return {
-                available: false,
-                reason: "Цей слот вже зайнятий"
-            };
-        }
-        const lessonsThisDay = this.lessonsService.findLessonsByGradeAndTime(grade, { day });
-        const groupsThisDay = lessonsThisDay.map((l) => l.group);
-        const subjectsThisDay = groupsThisDay.map((g) => g.subject!.key);
-
-        if (forbiddenSameDaySubjectKeys && forbiddenSameDaySubjectKeys.find((disabled) => subjectsThisDay
-            .includes(disabled))) {
-            return {
-                available: false,
-                reason: `Предмет ${subject.key} не може бути в один день з ${forbiddenSameDaySubjectKeys.join(", ")}`
-            };
-        }
-        if (!allowPairedLessons && subjectsThisDay.includes(key)) {
-            return {
-                available: false,
-                reason: `Предмет ${subject.key} вже є в цей день`
-            };
-        }
-
-        const isTeacherAvailable = this.isTeacherAvailableForLessonTime(
-            subject,
-            time
-        );
-        return {
-            available: isTeacherAvailable,
-            reason: isTeacherAvailable ? undefined : "Вчитель зайнятий в цей час"
-        };
     }
 }

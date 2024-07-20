@@ -13,7 +13,6 @@ export class TeachersService {
     private readonly teachersUrl = "teachers";
 
     constructor(private dataService: DataService, private notificationsService: NotificationsService) {
-        this.fetchTeachers();
     }
 
     fetchTeachers() {

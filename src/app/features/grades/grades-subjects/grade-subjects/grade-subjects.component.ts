@@ -59,10 +59,14 @@ export class GradeSubjectsComponent {
             }
         ));
     }
+
     ngOnInit() {
         this.gradeKeySubscription = this.gradeKey.subscribe(
             this.initTableData.bind(this)
         );
+        this.subjectsService.subjectsConfig$.subscribe(() => {
+            this.initTableData(this.gradeKey.value);
+        });
     }
 
     save() {

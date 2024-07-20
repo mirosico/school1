@@ -17,7 +17,6 @@ export class GradesService {
     #gradeNumbers: GradeNumber[] = ["5", "6", "7", "8", "9", "10", "11"];
 
     constructor(private parallelsService: ParallelsService, private dataService: DataService) {
-        this.fetchGrades();
     }
 
     get grades() {

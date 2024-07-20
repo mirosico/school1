@@ -8,28 +8,24 @@ interface Time {
     day: Day;
     slot: Slot;
 }
-
 declare interface Teacher {
     id: string;
     name: string;
     subjectKeys?: Subject["key"][];
     notAvailable?: Time[];
 }
-
 declare interface Lesson {
     id: string;
     time: Time;
-    group: SubjectGroup;
+    group: Pick<SubjectGroup, "id">;
     teacher: Teacher;
 }
-
 declare interface SubjectGroup {
     id: string;
     group: number;
     subject: Subject;
     teacher: Teacher;
 }
-
 declare interface Subject {
     id: string;
     key: string;
@@ -40,7 +36,6 @@ declare interface Subject {
     groupNumber: number;
     forbiddenSameDaySubjectKeys?: Subject["key"][];
 }
-
 declare interface User {
     login: string;
     password: string;

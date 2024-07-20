@@ -15,7 +15,8 @@ type SubjectConfig = (Omit<Subject, "grade" | "id"> & {
     providedIn: "root"
 })
 export class SubjectsService {
-    #subjectsConfig: SubjectConfig = [];
+    private subjectsConfigSubject: BehaviorSubject<SubjectConfig> = new BehaviorSubject<SubjectConfig>([]);
+    subjectsConfig$ = this.subjectsConfigSubject.asObservable();
     private subjectsSubject: BehaviorSubject<Subject[]> = new BehaviorSubject<Subject[]>([]);
     subjects$ = this.subjectsSubject.asObservable();
     private subjectsUrl = "subjects";
@@ -23,12 +24,10 @@ export class SubjectsService {
     constructor(
         private dataService: DataService,
     ) {
-        this.fetchSubjects();
-        this.fetchSubjectsConfig();
     }
 
     get subjectsConfig() {
-        return this.#subjectsConfig;
+        return this.subjectsConfigSubject.value;
     }
 
     fetchSubjects() {
@@ -42,7 +41,7 @@ export class SubjectsService {
     fetchSubjectsConfig() {
         return this.dataService.fetchData<SubjectConfig>(`${this.subjectsUrl}/config`).subscribe({
             next: (config) => {
-                this.#subjectsConfig = config;
+                this.subjectsConfigSubject.next(config);
             },
         });
     }
