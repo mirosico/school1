@@ -1,0 +1,9 @@
+<mat-toolbar class="top-bar">
+  <span class="logo-text">School1</span>
+  @for (topBarItem of topBarItems; track topBarItem.path) {
+    @if (!!topBarItem.spacer) {
+      <span class="spacer"></span>
+    }
+    <button (click)="topBarItem?.onClick ? topBarItem?.onClick() : navigateTo(topBarItem.path)" class="item" color="primary" mat-button>{{topBarItem.name}}</button>
+  }
+</mat-toolbar>

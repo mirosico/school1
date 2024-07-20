@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>Розклад</h2>
+  <mat-form-field class="selector">
+    <mat-label>Пошук</mat-label>
+    <input (ngModelChange)="onSearchChange($event)" [ngModel]="searchValue | async" matInput>
+  </mat-form-field>
+  <mat-tab-group>
+    <mat-tab label="Класи"> <app-grades-schedule [search]="searchValue"/> </mat-tab>
+    <mat-tab label="Вчителі"> <app-teachers-schedule [search]="searchValue" /> </mat-tab>
+  </mat-tab-group>
+</div>

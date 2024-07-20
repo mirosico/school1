@@ -1,0 +1,31 @@
+<table [id]="tableId" class="schedule-table">
+  <thead>
+  <tr>
+    <th>Викладач</th>
+    <th class="slot">День/№</th>
+    <th *ngFor="let dayName of dayNames">{{ dayName }}</th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (teacher of filteredTeachers; track teacher.id) {
+      @for (slot of slots; track slot) {
+        <tr>
+          @if (slot === 0) {
+            <th class="grade" rowspan="8">{{ teacher.name }}</th>
+          }
+          <th class="slot">
+            <div>{{ slot }}</div>
+          </th>
+          @for (day of days; track day) {
+            <td [className]="isBlocked(teacher.id, day, slot) ? 'blocked cell' : 'cell'"
+            >
+              <div class="cell-content">{{ getSubjectDisplayData(teacher, day, slot) }}</div>
+            </td>
+          }
+        </tr>
+      }
+    }
+  </tbody>
+</table>
+<button (click)="saveSchedule()" class="save" color="primary" mat-raised-button>Зберегти PDF</button>
+

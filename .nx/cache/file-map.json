@@ -1,0 +1,666 @@
+{
+  "version": "6.0",
+  "nxVersion": "17.2.8",
+  "deps": {
+    "@angular/animations": "^17.0.0",
+    "@angular/cdk": "^17.0.5",
+    "@angular/common": "^17.0.0",
+    "@angular/compiler": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "@angular/forms": "^17.0.0",
+    "@angular/material": "^17.0.5",
+    "@angular/platform-browser": "^17.0.0",
+    "@angular/platform-browser-dynamic": "^17.0.0",
+    "@angular/router": "^17.0.0",
+    "@nestjs/typeorm": "^10.0.2",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
+    "pg": "^8.11.4",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "typeorm": "^0.3.20",
+    "zone.js": "~0.14.2",
+    "@angular-devkit/build-angular": "^17.0.10",
+    "@angular-eslint/builder": "17.2.1",
+    "@angular-eslint/eslint-plugin": "17.2.1",
+    "@angular-eslint/eslint-plugin-template": "17.2.1",
+    "@angular-eslint/schematics": "17.2.1",
+    "@angular-eslint/template-parser": "17.2.1",
+    "@angular/cli": "^17.0.10",
+    "@angular/compiler-cli": "^17.0.0",
+    "@types/jasmine": "~5.1.0",
+    "@typescript-eslint/eslint-plugin": "6.19.0",
+    "@typescript-eslint/parser": "6.19.0",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.2.2"
+  },
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": ".editorconfig",
+        "hash": "6686520031028425313"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "4901112308122035038"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "13044518069027839699"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "5331566439708925252"
+      },
+      {
+        "file": ".vscode/launch.json",
+        "hash": "17038929134016848735"
+      },
+      {
+        "file": ".vscode/tasks.json",
+        "hash": "5336636969995539451"
+      },
+      {
+        "file": "README.md",
+        "hash": "2909683054474977005"
+      },
+      {
+        "file": "angular.json",
+        "hash": "15304101371755994278"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "13017318728935029219"
+      },
+      {
+        "file": "package.json",
+        "hash": "3438473037309567756"
+      },
+      {
+        "file": "server/school1-server/.eslintrc.js",
+        "hash": "7461846271827386206"
+      },
+      {
+        "file": "server/school1-server/.gitignore",
+        "hash": "12634402967133909834"
+      },
+      {
+        "file": "server/school1-server/.prettierrc",
+        "hash": "4808572120966128913"
+      },
+      {
+        "file": "server/school1-server/README.md",
+        "hash": "88028313855074524"
+      },
+      {
+        "file": "server/school1-server/nest-cli.json",
+        "hash": "789240945379598733"
+      },
+      {
+        "file": "server/school1-server/package-lock.json",
+        "hash": "11767596701222696229"
+      },
+      {
+        "file": "server/school1-server/package.json",
+        "hash": "15961881188182019562"
+      },
+      {
+        "file": "server/school1-server/src/app/app.controller.spec.ts",
+        "hash": "2727664763654384995"
+      },
+      {
+        "file": "server/school1-server/src/app/app.controller.ts",
+        "hash": "4552329938751326480"
+      },
+      {
+        "file": "server/school1-server/src/app/app.module.ts",
+        "hash": "4631134615215676540"
+      },
+      {
+        "file": "server/school1-server/src/app/app.service.ts",
+        "hash": "16892833931858030153"
+      },
+      {
+        "file": "server/school1-server/src/decorators/current-user.decorator.ts",
+        "hash": "1868210666673133865"
+      },
+      {
+        "file": "server/school1-server/src/gurads/auth.gurad.ts",
+        "hash": "13599489043050048536"
+      },
+      {
+        "file": "server/school1-server/src/main.ts",
+        "hash": "17273486195176617386"
+      },
+      {
+        "file": "server/school1-server/src/middlewares/current-user.middleware.ts",
+        "hash": "10705578433526601394"
+      },
+      {
+        "file": "server/school1-server/src/modules/grades/grades.controller.ts",
+        "hash": "10505966803653233989"
+      },
+      {
+        "file": "server/school1-server/src/modules/grades/grades.entity.ts",
+        "hash": "17591992779826763594"
+      },
+      {
+        "file": "server/school1-server/src/modules/grades/grades.module.ts",
+        "hash": "3656333371901190180"
+      },
+      {
+        "file": "server/school1-server/src/modules/grades/grades.service.ts",
+        "hash": "845444606703896316"
+      },
+      {
+        "file": "server/school1-server/src/modules/groups/groups.controller.ts",
+        "hash": "11392238313210104275"
+      },
+      {
+        "file": "server/school1-server/src/modules/groups/groups.entity.ts",
+        "hash": "3107036161411798573"
+      },
+      {
+        "file": "server/school1-server/src/modules/groups/groups.module.ts",
+        "hash": "4028355290524707830"
+      },
+      {
+        "file": "server/school1-server/src/modules/groups/groups.service.ts",
+        "hash": "17531541025541151170"
+      },
+      {
+        "file": "server/school1-server/src/modules/lessons/lessons.controller.ts",
+        "hash": "9525524008576254567"
+      },
+      {
+        "file": "server/school1-server/src/modules/lessons/lessons.entity.ts",
+        "hash": "9819016922756233087"
+      },
+      {
+        "file": "server/school1-server/src/modules/lessons/lessons.module.ts",
+        "hash": "12229322929455155414"
+      },
+      {
+        "file": "server/school1-server/src/modules/lessons/lessons.service.ts",
+        "hash": "8050695440012590024"
+      },
+      {
+        "file": "server/school1-server/src/modules/subjects/subjects.config.ts",
+        "hash": "9989251804970621902"
+      },
+      {
+        "file": "server/school1-server/src/modules/subjects/subjects.controller.ts",
+        "hash": "7788977984233284073"
+      },
+      {
+        "file": "server/school1-server/src/modules/subjects/subjects.entity.ts",
+        "hash": "17501100071957246398"
+      },
+      {
+        "file": "server/school1-server/src/modules/subjects/subjects.module.ts",
+        "hash": "7882436095107806913"
+      },
+      {
+        "file": "server/school1-server/src/modules/subjects/subjects.service.ts",
+        "hash": "4471525652519590602"
+      },
+      {
+        "file": "server/school1-server/src/modules/teachers/teachers.controller.ts",
+        "hash": "14596236146401284428"
+      },
+      {
+        "file": "server/school1-server/src/modules/teachers/teachers.entity.ts",
+        "hash": "14486035499769434880"
+      },
+      {
+        "file": "server/school1-server/src/modules/teachers/teachers.module.ts",
+        "hash": "7659444092465735761"
+      },
+      {
+        "file": "server/school1-server/src/modules/teachers/teachers.service.ts",
+        "hash": "1729321085578924790"
+      },
+      {
+        "file": "server/school1-server/src/modules/users/auth.service.ts",
+        "hash": "10815057114726397930"
+      },
+      {
+        "file": "server/school1-server/src/modules/users/users.controller.ts",
+        "hash": "4575324736716466010"
+      },
+      {
+        "file": "server/school1-server/src/modules/users/users.entity.ts",
+        "hash": "3063264295857329131"
+      },
+      {
+        "file": "server/school1-server/src/modules/users/users.module.ts",
+        "hash": "16354109328107344957"
+      },
+      {
+        "file": "server/school1-server/src/modules/users/users.service.ts",
+        "hash": "2970963756232607648"
+      },
+      {
+        "file": "server/school1-server/src/types/types.d.ts",
+        "hash": "7133997383224419936"
+      },
+      {
+        "file": "server/school1-server/test/app.e2e-spec.ts",
+        "hash": "6647849125831688468"
+      },
+      {
+        "file": "server/school1-server/test/jest-e2e.json",
+        "hash": "7570273541430074424"
+      },
+      {
+        "file": "server/school1-server/tsconfig.build.json",
+        "hash": "276845246908739715"
+      },
+      {
+        "file": "server/school1-server/tsconfig.json",
+        "hash": "1876265833229380624"
+      },
+      {
+        "file": "src/app/app.component.html",
+        "hash": "9274888606016505037"
+      },
+      {
+        "file": "src/app/app.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/app.component.spec.ts",
+        "hash": "6765823898132767789"
+      },
+      {
+        "file": "src/app/app.component.ts",
+        "hash": "1540715039619261568"
+      },
+      {
+        "file": "src/app/app.config.ts",
+        "hash": "2464023326993147678"
+      },
+      {
+        "file": "src/app/app.routes.ts",
+        "hash": "10102636231607631999"
+      },
+      {
+        "file": "src/app/features/grades/grades-parallels/grades-parallels.component.html",
+        "hash": "2890044926225773552"
+      },
+      {
+        "file": "src/app/features/grades/grades-parallels/grades-parallels.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/features/grades/grades-parallels/grades-parallels.component.spec.ts",
+        "hash": "16803788436941869928"
+      },
+      {
+        "file": "src/app/features/grades/grades-parallels/grades-parallels.component.ts",
+        "hash": "12177563045809389057"
+      },
+      {
+        "file": "src/app/features/grades/grades-subjects/grade-subjects/grade-subjects.component.html",
+        "hash": "8700752691442842555"
+      },
+      {
+        "file": "src/app/features/grades/grades-subjects/grade-subjects/grade-subjects.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/features/grades/grades-subjects/grade-subjects/grade-subjects.component.spec.ts",
+        "hash": "114592261345701550"
+      },
+      {
+        "file": "src/app/features/grades/grades-subjects/grade-subjects/grade-subjects.component.ts",
+        "hash": "8419823608278259061"
+      },
+      {
+        "file": "src/app/features/grades/grades-subjects/grades-subjects.component.html",
+        "hash": "7738093172645885043"
+      },
+      {
+        "file": "src/app/features/grades/grades-subjects/grades-subjects.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/features/grades/grades-subjects/grades-subjects.component.spec.ts",
+        "hash": "10436905193658893663"
+      },
+      {
+        "file": "src/app/features/grades/grades-subjects/grades-subjects.component.ts",
+        "hash": "18436933590646241142"
+      },
+      {
+        "file": "src/app/features/login/login.component.html",
+        "hash": "3486975463925140534"
+      },
+      {
+        "file": "src/app/features/login/login.component.scss",
+        "hash": "15007190624902928795"
+      },
+      {
+        "file": "src/app/features/login/login.component.spec.ts",
+        "hash": "13423884664040136397"
+      },
+      {
+        "file": "src/app/features/login/login.component.ts",
+        "hash": "14388064681564531463"
+      },
+      {
+        "file": "src/app/features/register/register.component.html",
+        "hash": "18070505931809085574"
+      },
+      {
+        "file": "src/app/features/register/register.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/features/register/register.component.spec.ts",
+        "hash": "486792085751781762"
+      },
+      {
+        "file": "src/app/features/register/register.component.ts",
+        "hash": "2935438370739908335"
+      },
+      {
+        "file": "src/app/features/schedule/grades-schedule/grades-schedule.component.html",
+        "hash": "18090018041667599650"
+      },
+      {
+        "file": "src/app/features/schedule/grades-schedule/grades-schedule.component.spec.ts",
+        "hash": "12547961811372840023"
+      },
+      {
+        "file": "src/app/features/schedule/grades-schedule/grades-schedule.component.ts",
+        "hash": "9346178886873858243"
+      },
+      {
+        "file": "src/app/features/schedule/schedule/schedule.component.html",
+        "hash": "5775280066965639578"
+      },
+      {
+        "file": "src/app/features/schedule/schedule/schedule.component.scss",
+        "hash": "2253025141436649557"
+      },
+      {
+        "file": "src/app/features/schedule/schedule/schedule.component.spec.ts",
+        "hash": "4477289252476675801"
+      },
+      {
+        "file": "src/app/features/schedule/schedule/schedule.component.ts",
+        "hash": "8151081330749623160"
+      },
+      {
+        "file": "src/app/features/schedule/teachers-schedule/teachers-schedule.component.html",
+        "hash": "10401923850214515583"
+      },
+      {
+        "file": "src/app/features/schedule/teachers-schedule/teachers-schedule.component.spec.ts",
+        "hash": "10707008440894361680"
+      },
+      {
+        "file": "src/app/features/schedule/teachers-schedule/teachers-schedule.component.ts",
+        "hash": "8029232587048389131"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-blocked-time/teacher-blocked-time/teacher-blocked-time.component.html",
+        "hash": "4572093709612435683"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-blocked-time/teacher-blocked-time/teacher-blocked-time.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-blocked-time/teacher-blocked-time/teacher-blocked-time.component.spec.ts",
+        "hash": "13891889083881281551"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-blocked-time/teacher-blocked-time/teacher-blocked-time.component.ts",
+        "hash": "8722002975941144219"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-blocked-time/teachers-blocked-time.component.html",
+        "hash": "16519410081897685425"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-blocked-time/teachers-blocked-time.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-blocked-time/teachers-blocked-time.component.spec.ts",
+        "hash": "10002889035642935398"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-blocked-time/teachers-blocked-time.component.ts",
+        "hash": "4505432715247998595"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-grades/teachers-grades.component.html",
+        "hash": "7340919294439287959"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-grades/teachers-grades.component.scss",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-grades/teachers-grades.component.spec.ts",
+        "hash": "13185955402601203429"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-grades/teachers-grades.component.ts",
+        "hash": "17367300438956996056"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-list/teachers-list.component.html",
+        "hash": "3936664373504946817"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-list/teachers-list.component.scss",
+        "hash": "427406416920016213"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-list/teachers-list.component.spec.ts",
+        "hash": "2060637997400331121"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-list/teachers-list.component.ts",
+        "hash": "12358433118355478367"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-list/teachers-list.directive.ts",
+        "hash": "9111164730794101575"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-subjects/teachers-subjects.component.html",
+        "hash": "11283576243066274392"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-subjects/teachers-subjects.component.scss",
+        "hash": "3417119848181646765"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-subjects/teachers-subjects.component.spec.ts",
+        "hash": "4393777927943520370"
+      },
+      {
+        "file": "src/app/features/teachers/teachers-subjects/teachers-subjects.component.ts",
+        "hash": "17399090011762492130"
+      },
+      {
+        "file": "src/app/shared/components/footer/footer.component.html",
+        "hash": "17376957499210101302"
+      },
+      {
+        "file": "src/app/shared/components/footer/footer.component.scss",
+        "hash": "13974636866784636262"
+      },
+      {
+        "file": "src/app/shared/components/footer/footer.component.spec.ts",
+        "hash": "10910183056555637205"
+      },
+      {
+        "file": "src/app/shared/components/footer/footer.component.ts",
+        "hash": "381658654070497516"
+      },
+      {
+        "file": "src/app/shared/components/topbar/topbar.component.html",
+        "hash": "5675986900138839836"
+      },
+      {
+        "file": "src/app/shared/components/topbar/topbar.component.scss",
+        "hash": "7327704614535583953"
+      },
+      {
+        "file": "src/app/shared/components/topbar/topbar.component.spec.ts",
+        "hash": "14787440715278558379"
+      },
+      {
+        "file": "src/app/shared/components/topbar/topbar.component.ts",
+        "hash": "2302093930872502367"
+      },
+      {
+        "file": "src/app/shared/guards/auth.guard.ts",
+        "hash": "9660464560944499046"
+      },
+      {
+        "file": "src/app/shared/interceptors/base-url.interceptor.ts",
+        "hash": "9081805466219526419"
+      },
+      {
+        "file": "src/app/shared/services/data-service/data-service.service.ts",
+        "hash": "10228051717137312341"
+      },
+      {
+        "file": "src/app/shared/services/download/download.service.ts",
+        "hash": "2555979246817763828"
+      },
+      {
+        "file": "src/app/shared/services/download/font.ts",
+        "hash": "15304011533827701251"
+      },
+      {
+        "file": "src/app/shared/services/grades/grades.service.ts",
+        "hash": "10521400683465788193"
+      },
+      {
+        "file": "src/app/shared/services/groups/groups.service.ts",
+        "hash": "887727573405020946"
+      },
+      {
+        "file": "src/app/shared/services/lesson-availability-checker/lesson-availability-checker.service.ts",
+        "hash": "3208033155766866895"
+      },
+      {
+        "file": "src/app/shared/services/lesson-availability-checker/strategies/ForbiddenSubjectsStrategy.ts",
+        "hash": "4137672853868798941"
+      },
+      {
+        "file": "src/app/shared/services/lesson-availability-checker/strategies/PairedLessonsStrategy.ts",
+        "hash": "9406273630009041702"
+      },
+      {
+        "file": "src/app/shared/services/lesson-availability-checker/strategies/SlotOccupancyStrategy.ts",
+        "hash": "7717723338929142324"
+      },
+      {
+        "file": "src/app/shared/services/lesson-availability-checker/strategies/TeacherAvailabilityStrategy.ts",
+        "hash": "7946103494417293377"
+      },
+      {
+        "file": "src/app/shared/services/lesson-availability-checker/strategies/index.ts",
+        "hash": "1238532015178506311"
+      },
+      {
+        "file": "src/app/shared/services/lessons/lessons.service.ts",
+        "hash": "5999835360426262968"
+      },
+      {
+        "file": "src/app/shared/services/notifications/notifications.service.ts",
+        "hash": "5989201478131464230"
+      },
+      {
+        "file": "src/app/shared/services/parallels/parallels.service.ts",
+        "hash": "13194357385947745591"
+      },
+      {
+        "file": "src/app/shared/services/schedule/schedule-matrix.service.ts",
+        "hash": "8610524732011539226"
+      },
+      {
+        "file": "src/app/shared/services/schedule/schedule.config.ts",
+        "hash": "15726613987591601728"
+      },
+      {
+        "file": "src/app/shared/services/schedule/schedule.service.ts",
+        "hash": "12152625051845821538"
+      },
+      {
+        "file": "src/app/shared/services/subjects/subjects.service.ts",
+        "hash": "701618657531335567"
+      },
+      {
+        "file": "src/app/shared/services/teachers/teachers.service.ts",
+        "hash": "14706890446680600895"
+      },
+      {
+        "file": "src/app/shared/services/users/users.service.ts",
+        "hash": "10919459427836165052"
+      },
+      {
+        "file": "src/app/shared/types.d.ts",
+        "hash": "10155181955762183529"
+      },
+      {
+        "file": "src/assets/.gitkeep",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/favicon.ico",
+        "hash": "3988961587069885523"
+      },
+      {
+        "file": "src/index.html",
+        "hash": "11967425333443445425"
+      },
+      {
+        "file": "src/main.ts",
+        "hash": "4222880948104931696"
+      },
+      {
+        "file": "src/styles.scss",
+        "hash": "17535569056861054933"
+      },
+      {
+        "file": "tsconfig.app.json",
+        "hash": "17337579397915052279"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "7963321389554419095"
+      },
+      {
+        "file": "tsconfig.spec.json",
+        "hash": "15575553540147145788"
+      }
+    ]
+  }
+}

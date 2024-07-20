@@ -1,0 +1,65 @@
+<div class="container">
+  <h2>
+    Виберіть в яких класах викладачі ведуть предмети
+  </h2>
+  <mat-form-field class="example-full-width">
+    <mat-label>Пошук</mat-label>
+    <input (ngModelChange)="onSearchChange($event)" [ngModel]="searchValue" matInput>
+  </mat-form-field>
+  <button (click)="save()" [disabled]="isSaveButtonDisabled()" class="save" color="primary" mat-raised-button>Зберегти</button>
+
+  <table class="schedule-table">
+    <thead>
+    <tr>
+      <th>Викладач</th>
+      <th>К-ть годин</th>
+      <th>Предмет</th>
+      @for (grade of grades; track grade) {
+        @for (group of getMaxGroupNumberArray(grade); track group) {
+          <th>
+            {{ grade }}({{ group }})
+          </th>
+        }
+      }
+    </tr>
+    </thead>
+    <tbody>
+      @for (teacher of filteredTeachers; track teacher.id) {
+        @if (!!teacher.subjectKeys?.length) {
+          @for (subjectId of teacher.subjectKeys; track subjectId) {
+            <tr>
+              <td>
+                {{ teacher.name }}
+              </td>
+              <td>
+                {{ getTeacherTotalHours(teacher.id) }}
+              </td>
+              <td>
+                {{ getSubjectLabel(subjectId) }}
+              </td>
+              @for (grade of grades; track grade) {
+                @for (group of getMaxGroupNumberArray(grade); track group) {
+                  <td>
+                    <div
+                      [matTooltip]="getCheckBoxToolTipLabel(grade, subjectId, teacher.id, group)"
+                    >
+                      <mat-checkbox
+                        [disabled]="isCheckboxDisabled(grade, subjectId, teacher.id, group)"
+                        [checked]="isCheckboxChecked(grade, subjectId, teacher.id, group)"
+                        (change)="onCheckboxChange(grade, subjectId, teacher.id, group, $event.checked)"
+                      >
+                      </mat-checkbox>
+                    </div>
+
+                  </td>
+                }
+              }
+            </tr>
+          }
+        }
+      }
+
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Створити аккаунт</h2>
+  <form (ngSubmit)="submit($event)" [formGroup]="form">
+    <p>
+      <mat-form-field>
+        <input  autocomplete="on" formControlName="login" matInput maxlength="50" minlength="3" placeholder="Логін" required type="text">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field>
+        <input formControlName="password" matInput minlength="4" placeholder="Пароль" required type="password">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input formControlName="confirmPassword" matInput minlength="4" placeholder="Підтвердіть пароль" required type="password">
+      </mat-form-field>
+    </p>
+    <button color="primary" mat-raised-button type="submit">Зареєструватись</button>
+  </form>
+</div>

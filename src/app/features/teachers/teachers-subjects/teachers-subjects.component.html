@@ -1,0 +1,34 @@
+<div class="container">
+  <h2>Розподіл викладачів по предметах</h2>
+  <mat-form-field class="example-full-width">
+    <mat-label>Пошук</mat-label>
+    <input (ngModelChange)="onSearchChange($event)" [ngModel]="searchValue" matInput>
+  </mat-form-field>
+  <button (click)="save()" class="save" color="primary" mat-raised-button type="submit">Зберегти</button>
+  <table class="schedule-table">
+    <thead>
+    <tr>
+      <th>Викладач</th>
+      <th>Предмети</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (teacher of filteredTeachers; track teacher.id) {
+        <tr>
+          <td>{{ teacher.name }}</td>
+          <td>
+            <mat-form-field class="subjects">
+              <mat-label>Предмети</mat-label>
+              <mat-select [ngModel]="teacher.subjectKeys" multiple (ngModelChange)="onSubjectsChange(teacher.id, $event)">
+                @for (subject of allSubjects; track subject.key) {
+                  <mat-option [value]="subject.key">{{ subject.label }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </td>
+          }
+    </tbody>
+  </table>
+</div>
+
+

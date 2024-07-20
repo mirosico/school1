@@ -1,0 +1,36 @@
+<table [id]="tableId" class="schedule-table">
+  <thead>
+  <tr>
+    <th>Клас</th>
+    <th class="slot">День/№</th>
+    <th *ngFor="let dayName of dayNames">{{ dayName }}</th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (grade of filteredGrades; track grade) {
+      @for (slot of slots; track slot) {
+        <tr>
+          @if (slot === 0) {
+            <th class="grade" rowspan="8">{{ grade }}</th>
+          }
+          <th class="slot">
+            <div>{{ slot }}</div>
+          </th>
+          @for (day of days; track day) {
+            <td [id]="getCellId(grade, day, slot)"
+                class="cell"
+                draggable="true"
+                (drop)="dragEnd($event, grade, day, slot)"
+                (dragstart)="dragStart(grade, day, slot)"
+                (dragleave)="dragLeave($event)"
+                (dragover)="dragOver($event, grade, day, slot)"
+                >
+              <div class="cell-content">{{ getSubjectDisplayData(grade, day, slot) }}</div>
+            </td>
+          }
+        </tr>
+      }
+    }
+  </tbody>
+</table>
+<button (click)="saveSchedule()" class="save" color="primary" mat-raised-button>Зберегти PDF</button>
